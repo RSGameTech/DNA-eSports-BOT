@@ -6,7 +6,6 @@ import traceback
 import jishaku
 from discord.ext import commands, tasks
 from itertools import cycle
-from keep_alive import keep_alive
 
 intents = discord.Intents.all()
 intents.members = True
@@ -44,4 +43,4 @@ if __name__ == '__main__':
 
 keep_alive()
 bot.load_extension("jishaku")
-bot.run(os.getenv('TOKEN'))
+bot.run('ODIxNzM2NzA0MTM3NDk0NTc5.YFID8Q.8Nwmkp6HWbcKAeuyQVWg2NlvpUA')

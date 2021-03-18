@@ -1,0 +1,9 @@
+discord
+requests
+asyncio
+random
+sys
+os
+traceback
+jishaku
+itertools
