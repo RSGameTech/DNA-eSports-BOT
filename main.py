@@ -5,6 +5,7 @@ import os
 import traceback
 import jishaku
 from discord.ext import commands, tasks
+from dotenv import load_dotenv
 from itertools import cycle
 
 intents = discord.Intents.all()
@@ -12,6 +13,8 @@ intents.members = True
 bot = commands.Bot(command_prefix=d!, intents=intents)
 #bot.remove_command('help')
 status = cycle(["d!help", "TSK Verified OFFICIAL"])
+
+load_dotenv()
 
 @bot.event
 async def on_ready():
@@ -43,4 +46,4 @@ if __name__ == '__main__':
 
 keep_alive()
 bot.load_extension("jishaku")
-bot.run('ODIxNzM2NzA0MTM3NDk0NTc5.YFID8Q.8Nwmkp6HWbcKAeuyQVWg2NlvpUA')
+bot.run(os.getenv("TOKEN"))
