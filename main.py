@@ -12,7 +12,7 @@ intents = discord.Intents.all()
 intents.members = True
 bot = commands.Bot(command_prefix=d!, intents=intents)
 #bot.remove_command('help')
-status = cycle(["d!help", "TSK Verified OFFICIAL"])
+status = cycle([activity=discord.Activity(type=discord.ActivityType.watching, name="TSK Verified Discord Server"), activity=discord.Activity(type=discord.ActivityType.listening, name="TSK Verified")])
 
 load_dotenv()
 
@@ -20,15 +20,15 @@ load_dotenv()
 async def on_ready():
   change_status.start()
   print("DNA is online")
+  await ctx.send("DNA is online")
 
 @tasks.loop(seconds=5)
 async def change_status():
-  await bot.change_presence(activity=discord.Game(next(status)))
+  await bot.change_presence(activity=next(status))
 
 bot.owner_ids=[651506861844987906, 699566190842085439]
 
 extensions = ['cogs.moderation',
-              'cogs.animation',
               'cogs.fun',
 							'cogs.event',
               'cogs.info',

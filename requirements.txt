@@ -1,5 +1,0 @@
-discord.py==1.6.0
-requests==2.25.1
-asyncio==3.4.3
-jishaku==1.20.0.220
-python-dotenv==0.15.0
