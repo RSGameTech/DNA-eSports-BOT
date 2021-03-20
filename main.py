@@ -20,7 +20,8 @@ load_dotenv()
 async def on_ready():
   change_status.start()
   print("DNA is online")
-  await ctx.send("DNA is online")
+  channel = bot.get_channel(822873485532463114)
+  await channel.send("DNA is online")
 
 @tasks.loop(seconds=5)
 async def change_status():
