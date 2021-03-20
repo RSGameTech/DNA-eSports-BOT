@@ -7,6 +7,7 @@ import jishaku
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
 from itertools import cycle
+from keep_alive import keep_alive
 
 intents = discord.Intents.all()
 intents.members = True
