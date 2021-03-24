@@ -11,11 +11,9 @@ from keep_alive import keep_alive
 
 intents = discord.Intents.all()
 intents.members = True
-bot = commands.Bot(command_prefix=d!, intents=intents)
+bot = commands.Bot(command_prefix="d!", intents=intents)
 #bot.remove_command('help')
-status = cycle([activity=discord.Activity(type=discord.ActivityType.watching, name="TSK Verified Discord Server"), activity=discord.Activity(type=discord.ActivityType.listening, name="TSK Verified")])
-
-load_dotenv()
+status = cycle([discord.Activity(type=discord.ActivityType.watching, name="TSK Verified Discord Server"), discord.Activity(type=discord.ActivityType.listening, name="TSK Verified")])
 
 @bot.event
 async def on_ready():
