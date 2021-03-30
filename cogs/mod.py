@@ -69,11 +69,6 @@ class mod(commands.Cog, name="moderation"):
 	@commands.command()
 	@commands.has_permissions(kick_members = True)
 	async def kick(self, ctx, member: discord.Member, *,reason="No reason given"):
-		"""kick someone
-        Parameters
-        • member - the member to kick
-        • reason - reason why the member was kicked
-        """
 		self.saved_roles[member.id] = member.roles[1:]
 		try:
 			await ctx.guild.kick(member, reason=reason)
@@ -88,13 +83,7 @@ class mod(commands.Cog, name="moderation"):
 
 	@commands.command()
 	@commands.has_permissions(ban_members=True)
-	async def ban(self, ctx, member: discord.Member, *, reason="No reason given",
-	):
-		"""ban someone, can also be used to ban someone not in the guild using their id
-        Parameters
-        • member - the member to ban
-        • reason - reason why the member was banned
-        """
+	async def ban(self, ctx, member: discord.Member, *, reason="No reason given",):
 		if type(member) == discord.Member:
 			await ctx.guild.ban(member, reason=reason, delete_message_days=0)
 		else:
@@ -149,11 +138,6 @@ class mod(commands.Cog, name="moderation"):
 	@commands.group(aliases=["c"], invoke_without_command=True)
 	@commands.has_permissions(manage_messages=True)
 	async def clean(self, ctx, amount: typing.Optional[int] = 0, member: discord.Member = None):
-		"""delete a number of your own or another users messages
-        Parameters
-        • amount - the amount of messages to delete, delets ∞ messages by default
-        • member - the member whose messages are to be deleted, deletes your own messages by default
-        """
 		deleted = 0
 		await ctx.message.delete()
 		user = member or ctx.message.author
@@ -218,10 +202,6 @@ class mod(commands.Cog, name="moderation"):
 	@commands.command()
 	@commands.has_permissions(manage_roles=True)
 	async def addrole(self, ctx, member: discord.Member, *,role: discord.Role):
-		"""Add a role to someone else
-        Parameter
-        • member - the name or id of the member
-        • role - the name or id of the role"""
 		if not role:
 			return await ctx.send("That role does not exist.")
 		await member.add_roles(role)

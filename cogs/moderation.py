@@ -3,6 +3,9 @@ import asyncio
 import typing
 from discord.ext import commands
 
+sn = "Server News"
+er = "Error"
+
 class moderation(commands.Cog, name="Moderation"):
     def __init__(self, bot):
         self.bot = bot
@@ -12,28 +15,29 @@ class moderation(commands.Cog, name="Moderation"):
     @commands.command()
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx, member: discord.Member, *, reason=None):
-      await member.kick(reason=reason)
-      await ctx.channel.purge(limit=1)
-      embed = discord.Embed(
-            title="Kick News",
+        await member.kick(reason=reason)
+        await ctx.channel.purge(limit=1)
+        embed = discord.Embed(
+            title=sn,
             description=f"{member.name} has successfully kicked for {reason}",
-            color=discord.Color.red()
-            )
+            color=0x00FF00
+        )
       await ctx.send(embed=embed)
 
     @kick.error
     async def kick_error(self, ctx, error):
-      if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send("```Please mention the Name```")
-      elif isinstance(error, commands.MemberNotFound):
-          await ctx.send("```Member not found in this server```")
-      elif isinstance(error, commands.MissingPermissions):
-          KE = discord.Embed(
-                title="Kick News",
-                description=
-                f"{ctx.author.mention}, you don't have the Kick Member permission!",
-                color=0xFF0000)
-          await ctx.send(embed=KE)
+    if isinstance(error, commands.MissingRequiredArgument):
+        kdes="Please mention the Name"
+    elif isinstance(error, commands.MemberNotFound):
+        kdes="Member not found in this server"
+    elif isinstance(error, commands.MissingPermissions):
+        kdes=f"{ctx.author.mention}, you don't have the Kick Member permission!" 
+    KE = discord.Embed(
+        title=er,
+        description=kdes,
+        color=0xFF0000
+    )
+    await ctx.send(embed=KE)
 
     #Ban
 
@@ -43,10 +47,10 @@ class moderation(commands.Cog, name="Moderation"):
         await member.ban(reason=reason)
         await ctx.channel.purge(limit=1)
         embed = discord.Embed(
-            title="Ban News",
+            title=sn,
             description=f"{member.name} has successfully banned for {reason}",
-            color=discord.Color.red()
-            )
+            color=0xFF0000
+        )
         await ctx.send(embed=embed)
 
     @ban.error
@@ -57,9 +61,10 @@ class moderation(commands.Cog, name="Moderation"):
             await ctx.send("```Member not found in this server```")
         elif isinstance(error, commands.MissingPermissions):
             BE = discord.Embed(
-                title="Ban News",
+                title=er,
                 description=f"{ctx.author.mention}, you don't have the Ban Member permission!",
-                color=0xFF0000)
+                color=0xFF0000
+            )
             await ctx.send(embed=BE)
 
     #Clear
@@ -68,9 +73,9 @@ class moderation(commands.Cog, name="Moderation"):
     @commands.has_permissions(manage_messages=True)
     async def clear(self, ctx, amount: int):
         embed = discord.Embed(
-            title="Clear News",
+            title=sn,
             description="Message has been succesfully clear",
-            color=0xE67E22
+            color=0x00FF00
         )
         await ctx.channel.purge(limit=amount + 1)
         await ctx.send(embed=embed)
@@ -89,10 +94,11 @@ class moderation(commands.Cog, name="Moderation"):
     @commands.command()
     @commands.has_permissions(manage_messages=True)
     async def embed(self, ctx, title: str = None,*, description: str = None):
-        embed = discord.Embed(title=f"{title}",
-                            description=f"{description}",
-                            color=0xFFFF00
-                            )
+        embed = discord.Embed(
+            title=f"{title}",
+            description=f"{description}",
+            color=0xFFFF00
+        )
         await ctx.send(embed=embed)
 
     @embed.error
