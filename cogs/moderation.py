@@ -25,7 +25,7 @@ class moderation(commands.Cog, name="Moderation"):
         await ctx.send(embed=embed)
 
     @kick.error
-	error = getattr(error, "original", error)
+    error = getattr(error, "original", error)
     async def kick_error(self, ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         kdes="Please mention the Name!"
