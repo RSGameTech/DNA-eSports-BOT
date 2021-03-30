@@ -27,9 +27,9 @@ class moderation(commands.Cog, name="Moderation"):
     @kick.error
     async def kick_error(self, ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
-        kdes="Please mention the Name"
+        kdes="Please mention the Name!"
     elif isinstance(error, commands.MemberNotFound):
-        kdes="Member not found in this server"
+        kdes="Member not found in this server!"
     elif isinstance(error, commands.MissingPermissions):
         kdes=f"{ctx.author.mention}, you don't have the Kick Member permission!" 
     KE = discord.Embed(
