@@ -22,7 +22,7 @@ class moderation(commands.Cog, name="Moderation"):
             description=f"{member.name} has successfully kicked for {reason}",
             color=0x00FF00
         )
-      await ctx.send(embed=embed)
+        await ctx.send(embed=embed)
 
     @kick.error
     async def kick_error(self, ctx, error):
